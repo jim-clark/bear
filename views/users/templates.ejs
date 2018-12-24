@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Copy Templates</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <h1>Copy Templates for <strong><%= userId %></strong></h1>
+  <form action="/users/<%= userId %>/templates" method="POST">
+    <% fileList.forEach(function(path) { %>
+      <% let segments = path.split('/') %>
+      <% segments.shift() %>
+      <div class="level-<%= segments.length %> <%= !path.includes('.') ? 'folder' : ''%>">
+        <label>
+          <input type="checkbox" name="path[<%= path %>]">
+          <span></span>
+          <span><%= segments[segments.length - 1] %></span>
+        </label>
+      </div>
+    <% }) %>
+    <div>
+      <button type="submit">COPY TEMPLATES</button>
+    </div>
+  </form>
+</body>
+</html>

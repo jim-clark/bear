@@ -1,0 +1,58 @@
+:root {
+  --indentation: 20px;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+form input {
+  cursor: pointer;
+}
+
+div.folder input + span::after {
+  content: '\1f4c1';
+}
+
+form div {
+  margin-top: 5px;
+}
+
+form div button {
+  margin-top: 20px;
+  padding: 5px;
+  border: 1px solid grey;
+  border-radius: 4px;
+}
+
+form div button:hover {
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+}
+
+div.level-1 {
+  margin-left: calc(var(--indentation) * 1);
+}
+
+div.level-2 {
+  margin-left: calc(var(--indentation) * 2);
+}
+
+div.level-3 {
+  margin-left: calc(var(--indentation) * 3);
+}
+
+div.level-4 {
+  margin-left: calc(var(--indentation) * 4);
+}
+
+div.level-5 {
+  margin-left: calc(var(--indentation) * 5);
+}
+
+div.level-6 {
+  margin-left: calc(var(--indentation) * 6);
+}
+
