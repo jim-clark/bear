@@ -8,6 +8,7 @@ function handleChange(e) {
   const folder = isFolder(inp);
   if (folder) {
     clearOrSelectAllDecendents(inp);
+    uncheckEmptyFolders();
   } else if (getLevel(inp) > 1) {
     if (inp.checked) {
       checkAllAncestorFolders(inp);
