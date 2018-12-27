@@ -24,9 +24,9 @@ function uncheckEmptyFolders() {
   let level = deepestFolderLevel - 1;
   while (level > 0) {
     const foldersAtLevel = folders.filter(f => getLevel(f) === level);
-    for (f of foldersAtLevel) {
+    for (let f of foldersAtLevel) {
       const childFolders = getChildFolders(f);
-      f.checked = childFolders.some(f => f.checked);
+      if (childFolders.length) f.checked = childFolders.some(f => f.checked);
     }
     level--;
   }
@@ -36,8 +36,8 @@ function getChildFolders(inp) {
   let idx = inputs.indexOf(inp) + 1;
   let level = getLevel(inp);
   let childFolders = [];
-  while (idx < inputs.length && getLevel(inputs[idx]) === level + 1) {
-    if (isFolder(inputs[idx])) childFolders.push(inputs[idx]);
+  while (idx < inputs.length && getLevel(inputs[idx]) > level) {
+    if (isFolder(inputs[idx]) && getLevel(inputs[idx]) === level + 1) childFolders.push(inputs[idx]);
     idx++;
   }
   return childFolders;
