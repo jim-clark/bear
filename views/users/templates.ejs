@@ -16,7 +16,7 @@
       <% segments.shift() %>
       <div class="level-<%= segments.length %> <%= !path.includes('.') ? 'folder' : ''%>">
         <label>
-          <input type="checkbox" name="path[<%= path %>]">
+          <input type="checkbox" name="paths[<%= path %>]">
           <span></span>
           <span><%= segments[segments.length - 1] %></span>
         </label>

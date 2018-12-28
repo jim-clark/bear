@@ -3,10 +3,30 @@ const path = require('path');
 
 const arcBasePath = fs.realpathSync('./arc-protected-files');
 const templateFolderName = 'templates-for-clients';
+const clientBasePath = path.join(arcBasePath, 'client-folders');
 
 module.exports = {
   getTemplatesFileList,
+  copyTemplateFileToClientFolder,
 };
+
+function copyTemplateFileToClientFolder(templatePath, clientId) {
+  const sourceTemplateFilePath = path.join(arcBasePath, templateFolderName, templatePath);
+  const targetTemplateFilePath = path.join(clientBasePath, clientId, templatePath);
+  return new Promise(function(resolve, reject) {
+    if (sourceTemplateFilePath.includes('.')) {
+      fs.copyFile(sourceTemplateFilePath, targetTemplateFilePath, function(err) {
+        if (err) reject(err);
+        resolve(`COPIED: ${targetTemplateFilePath}`);
+      });
+    } else {
+      fs.mkdir(targetTemplateFilePath, { recursive: true }, function(err) {
+        if (err) resolve(`DIR ALREADY EXISTS: ${sourceTemplateFilePath}`);
+        resolve(`DIR CREATED: ${sourceTemplateFilePath}`);
+      });
+    }
+  });
+}
 
 function getTemplatesFileList(cb) {
   /*
